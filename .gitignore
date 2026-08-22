@@ -1,0 +1,26 @@
+# Dataset
+cattle/
+
+# Trained models
+models/
+*.pth
+*.pt
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
