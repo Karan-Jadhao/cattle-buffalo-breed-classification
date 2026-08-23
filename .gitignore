@@ -2,24 +2,55 @@
 cattle/
 
 # Trained models
-models/
+models/*
+!models/.gitkeep
 *.pth
 *.pt
+*.onnx
+checkpoints/
+runs/
+wandb/
+tensorboard/
 
 # Python
 __pycache__/
 *.py[cod]
+*.pyd
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
 
 # Virtual environments
 venv/
 .venv/
 env/
+ENV/
 
 # Jupyter
 .ipynb_checkpoints/
 
+# Test and tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Logs and local runtime files
+*.log
+logs/
+uploads/
+
 # IDE
 .vscode/
+.idea/
 
 # OS
 .DS_Store
