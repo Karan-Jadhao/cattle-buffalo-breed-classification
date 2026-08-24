@@ -5,10 +5,26 @@
 # Raw cattle/buffalo images
 cattle/
 
-# Trained models
+# Other large dataset folders
+datasets/
+data/images/
+
+
+# ==========================================
+# Trained Models
+# ==========================================
+
 models/
+
 *.pth
 *.pt
+*.onnx
+checkpoints/
+runs/
+wandb/
+tensorboard/
+*.onnx
+
 
 # ==========================================
 # Python
@@ -16,11 +32,24 @@ models/
 
 __pycache__/
 *.py[cod]
+*.pyd
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+*.pyo
 
-# Virtual environments
+
+# ==========================================
+# Virtual Environment
+# ==========================================
+
 venv/
 .venv/
 env/
+ENV/
+
 
 # ==========================================
 # Jupyter
@@ -28,29 +57,14 @@ env/
 
 .ipynb_checkpoints/
 
-# Test and tooling caches
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.coverage
-htmlcov/
-
-# Environment and secrets
-.env
-.env.*
-!.env.example
-
-# Logs and local runtime files
-*.log
-logs/
-uploads/
-
 
 # ==========================================
 # IDE
 # ==========================================
 
 .vscode/
+.idea/
+
 
 # ==========================================
 # OS
