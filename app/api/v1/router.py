@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
 from app.api.v1.endpoints import health
+from app.api.v1.endpoints import inference
 from app.api.v1.endpoints import prediction
 
 
@@ -19,3 +20,5 @@ router.include_router(
     prefix="/predictions",
     tags=["Predictions"],
 )
+
+router.include_router(inference.router, tags=["Inference"])

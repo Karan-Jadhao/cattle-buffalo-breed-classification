@@ -1,29 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { X } from "lucide-react";
 import "./Modal.css";
 
 function Modal({ isOpen, onClose, children }) {
-  const [shouldRender, setShouldRender] = useState(false);
-  const [animate, setAnimate] = useState(false);
-
-  useEffect(() => {
-    if (isOpen) {
-      setShouldRender(true);
-      // Let the browser paint first, then trigger animation
-      const timer = setTimeout(() => setAnimate(true), 10);
-      document.body.style.overflow = "hidden";
-      return () => clearTimeout(timer);
-    } else {
-      setAnimate(false);
-      const timer = setTimeout(() => setShouldRender(false), 300); // match CSS duration
-      document.body.style.overflow = "unset";
-      return () => clearTimeout(timer);
-    }
-  }, [isOpen]);
-
   useEffect(() => {
     if (!isOpen) return;
+    document.body.style.overflow = "hidden";
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
         onClose();
@@ -36,13 +19,16 @@ function Modal({ isOpen, onClose, children }) {
     };
   }, [isOpen, onClose]);
 
-  if (!shouldRender) return null;
+  if (!isOpen) return null;
 
   return ReactDOM.createPortal(
-    <div className={`modal-overlay ${animate ? "show" : ""}`} onClick={onClose}>
+    <div className="modal-overlay show" onClick={onClose} role="presentation">
       <div
-        className={`modal-container ${animate ? "show" : ""}`}
+        className="modal-container show"
         onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Dialog"
       >
         <button className="modal-close-btn" onClick={onClose} aria-label="Close modal">
           <X size={20} />

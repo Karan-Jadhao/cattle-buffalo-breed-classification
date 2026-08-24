@@ -1,139 +1,141 @@
 .about-section {
-  width: 100%;
-  background: #f8fbfa;
-  padding: 80px 0;
+  background: var(--surface-muted);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-12) 0;
 }
 
 .about-container {
-  width: 90%;
-  max-width: 1650px;
+  width: min(var(--content-width), 92%);
   margin: 0 auto;
-
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 70px;
+  gap: clamp(2.5rem, 5vw, 5rem);
 }
 
-/* -------------------------
-   LEFT CONTENT
-------------------------- */
-
 .about-content {
-  max-width: 620px;
+  max-width: 580px;
 }
 
 .about-label {
   display: flex;
   align-items: center;
-  gap: 14px;
-
-  margin-bottom: 22px;
-
-  color: #07875f;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.3px;
+  gap: 10px;
+  margin-bottom: var(--space-4);
+  color: var(--accent-sage);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .about-line {
-  width: 30px;
+  width: 28px;
   height: 2px;
-  background: #07875f;
-  display: inline-block;
+  background: var(--accent-sage);
+  border-radius: 2px;
 }
 
 .about-content h2 {
-  margin: 0 0 28px;
-
-  color: #082d27;
-
-  font-size: clamp(38px, 3.2vw, 58px);
+  margin-bottom: var(--space-4);
+  color: var(--text-primary);
+  font-size: clamp(2rem, 3.6vw, 3.1rem);
   line-height: 1.12;
-  font-weight: 750;
-  letter-spacing: -1.5px;
+  letter-spacing: -0.04em;
 }
 
 .about-content p {
-  margin: 0 0 22px;
-
-  color: #243b38;
-
-  font-size: 18px;
-  line-height: 1.75;
-  font-weight: 400;
+  margin-bottom: var(--space-4);
+  color: var(--text-secondary);
+  font-size: 1.02rem;
+  line-height: 1.68;
 }
 
-.about-content p:last-child {
-  margin-bottom: 0;
+.about-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
 }
 
-/* -------------------------
-   RIGHT IMAGE
-------------------------- */
+.highlight-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 0.84rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+.highlight-icon {
+  color: var(--accent-emerald);
+}
 
 .about-image-wrapper {
-  width: 100%;
-  height: 460px;
+  position: relative;
+  height: 440px;
   overflow: hidden;
-  border-radius: 18px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-md);
+  background: var(--surface);
 }
 
 .about-image {
   width: 100%;
   height: 100%;
-
-  display: block;
-
   object-fit: cover;
-  object-position: center;
-
   transition: transform 0.5s ease;
 }
 
 .about-image-wrapper:hover .about-image {
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 
-/* -------------------------
-   RESPONSIVE
-------------------------- */
+.about-image-badge {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-float);
+}
 
-@media (max-width: 1000px) {
+.about-image-badge strong {
+  font-size: 0.92rem;
+  color: var(--text-primary);
+}
+
+.about-image-badge span {
+  font-size: 0.75rem;
+  color: var(--accent-sage);
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
   .about-container {
     grid-template-columns: 1fr;
-    gap: 45px;
+    gap: var(--space-8);
   }
 
   .about-content {
-    max-width: 750px;
+    max-width: 100%;
   }
 
   .about-image-wrapper {
-    height: 450px;
+    height: 360px;
   }
 }
 
-@media (max-width: 600px) {
-  .about-section {
-    padding: 60px 0;
-  }
-
-  .about-container {
-    width: 88%;
-  }
-
-  .about-content h2 {
-    font-size: 36px;
-  }
-
-  .about-content p {
-    font-size: 16px;
-    line-height: 1.65;
-  }
-
-  .about-image-wrapper {
-    height: 320px;
-    border-radius: 14px;
-  }
-}

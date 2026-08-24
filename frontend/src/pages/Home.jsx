@@ -23,12 +23,12 @@ function Home() {
 
       <main>
         <Hero />
+        <PredictionCard />
         <About />
         <Stats />
 
         <section className="how-prediction-section">
           <HowItWorks />
-          <PredictionCard />
         </section>
 
         <SupportedImages />
