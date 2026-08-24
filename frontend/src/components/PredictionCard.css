@@ -1,0 +1,130 @@
+.prediction-card {
+  height: 270px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 13px;
+
+  background-size: cover;
+  background-position: center;
+}
+
+.prediction-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,58,44,.96),
+      rgba(0,68,51,.72) 52%,
+      rgba(0,60,45,.12)
+    );
+}
+
+.prediction-content {
+  position: relative;
+  z-index: 2;
+
+  width: 65%;
+
+  padding: 22px 25px;
+
+  color: white;
+}
+
+.prediction-label {
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.prediction-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.prediction-heading h2 {
+  font-size: 28px;
+}
+
+.prediction-heading span {
+  padding: 6px 10px;
+
+  border-radius: 15px;
+
+  background: #07865d;
+
+  font-size: 11px;
+}
+
+.breed-details {
+  margin-top: 14px;
+}
+
+.detail {
+  display: grid;
+
+  grid-template-columns: 18px 105px 1fr;
+
+  gap: 3px;
+
+  margin-bottom: 8px;
+
+  font-size: 11px;
+
+  line-height: 1.4;
+}
+
+.detail svg {
+  margin-top: 1px;
+}
+
+.detail span {
+  color: #dcebe5;
+}
+
+.detail strong {
+  font-weight: 400;
+}
+
+.details-button {
+  margin-top: 8px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 8px 13px;
+
+  background: transparent;
+
+  border: 1px solid #a8d6c4;
+
+  border-radius: 6px;
+
+  color: white;
+
+  font-size: 11px;
+
+  cursor: pointer;
+}
+
+.details-button:hover {
+  background: rgba(255,255,255,.12);
+}
+
+@media (max-width: 700px) {
+
+  .prediction-card {
+    height: 350px;
+  }
+
+  .prediction-content {
+    width: 90%;
+  }
+
+}

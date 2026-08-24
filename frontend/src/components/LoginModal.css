@@ -1,0 +1,138 @@
+.login-modal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.login-logo-icon {
+  width: 48px;
+  height: 48px;
+  background: #eef8f4;
+  color: #087f5b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.login-modal-header h2 {
+  font-size: 22px;
+  color: #17221f;
+  font-weight: 700;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2b3d38;
+}
+
+.input-field-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  color: #79948c;
+  pointer-events: none;
+}
+
+.input-field-wrapper input {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  border: 1.5px solid #d2ded7;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #17221f;
+  background: #fcfdfc;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.input-field-wrapper input:focus {
+  border-color: #087f5b;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(8, 127, 91, 0.12);
+}
+
+.login-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #4b625a;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #087f5b;
+  cursor: pointer;
+}
+
+.forgot-link, .signup-link {
+  color: #087f5b;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.forgot-link:hover, .signup-link:hover {
+  color: #066d4e;
+  text-decoration: underline;
+}
+
+.login-submit-btn {
+  width: 100%;
+  padding: 13px;
+  background: #087f5b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  margin-top: 5px;
+}
+
+.login-submit-btn:hover {
+  background: #066d4e;
+}
+
+.login-submit-btn:active {
+  transform: scale(0.99);
+}
+
+.signup-prompt {
+  text-align: center;
+  font-size: 14px;
+  color: #4b625a;
+  margin-top: 10px;
+}

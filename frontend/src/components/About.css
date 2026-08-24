@@ -1,0 +1,139 @@
+.about-section {
+  width: 100%;
+  background: #f8fbfa;
+  padding: 80px 0;
+}
+
+.about-container {
+  width: 90%;
+  max-width: 1650px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  align-items: center;
+  gap: 70px;
+}
+
+/* -------------------------
+   LEFT CONTENT
+------------------------- */
+
+.about-content {
+  max-width: 620px;
+}
+
+.about-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  margin-bottom: 22px;
+
+  color: #07875f;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.about-line {
+  width: 30px;
+  height: 2px;
+  background: #07875f;
+  display: inline-block;
+}
+
+.about-content h2 {
+  margin: 0 0 28px;
+
+  color: #082d27;
+
+  font-size: clamp(38px, 3.2vw, 58px);
+  line-height: 1.12;
+  font-weight: 750;
+  letter-spacing: -1.5px;
+}
+
+.about-content p {
+  margin: 0 0 22px;
+
+  color: #243b38;
+
+  font-size: 18px;
+  line-height: 1.75;
+  font-weight: 400;
+}
+
+.about-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* -------------------------
+   RIGHT IMAGE
+------------------------- */
+
+.about-image-wrapper {
+  width: 100%;
+  height: 460px;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.about-image {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+  object-position: center;
+
+  transition: transform 0.5s ease;
+}
+
+.about-image-wrapper:hover .about-image {
+  transform: scale(1.02);
+}
+
+/* -------------------------
+   RESPONSIVE
+------------------------- */
+
+@media (max-width: 1000px) {
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .about-content {
+    max-width: 750px;
+  }
+
+  .about-image-wrapper {
+    height: 450px;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-section {
+    padding: 60px 0;
+  }
+
+  .about-container {
+    width: 88%;
+  }
+
+  .about-content h2 {
+    font-size: 36px;
+  }
+
+  .about-content p {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .about-image-wrapper {
+    height: 320px;
+    border-radius: 14px;
+  }
+}
