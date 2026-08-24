@@ -15,6 +15,9 @@ IMAGE_SIZE = 224
 
 BATCH_SIZE = 32
 
+# Number of CPU processes used to load images
+NUM_WORKERS = 4
+
 
 # ==========================================
 # Training transformations
@@ -128,7 +131,9 @@ train_loader = DataLoader(
     train_dataset,
     batch_size=BATCH_SIZE,
     shuffle=True,
-    num_workers=0
+    num_workers=NUM_WORKERS,
+    pin_memory=True,
+    persistent_workers=True
 )
 
 
@@ -136,7 +141,9 @@ val_loader = DataLoader(
     val_dataset,
     batch_size=BATCH_SIZE,
     shuffle=False,
-    num_workers=0
+    num_workers=NUM_WORKERS,
+    pin_memory=True,
+    persistent_workers=True
 )
 
 
@@ -144,7 +151,9 @@ test_loader = DataLoader(
     test_dataset,
     batch_size=BATCH_SIZE,
     shuffle=False,
-    num_workers=0
+    num_workers=NUM_WORKERS,
+    pin_memory=True,
+    persistent_workers=True
 )
 
 
@@ -161,6 +170,9 @@ if __name__ == "__main__":
     print(f"\nTraining images   : {len(train_dataset)}")
     print(f"Validation images : {len(val_dataset)}")
     print(f"Testing images    : {len(test_dataset)}")
+
+    print(f"\nBatch size        : {BATCH_SIZE}")
+    print(f"Workers           : {NUM_WORKERS}")
 
     # Get one batch
     images, labels = next(iter(train_loader))

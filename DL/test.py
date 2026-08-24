@@ -1,18 +1,12 @@
-import os
 import torch
 import torch.nn as nn
-import numpy as np
 
 from sklearn.metrics import (
-    accuracy_score,
+    classification_report,
     precision_score,
     recall_score,
-    f1_score,
-    classification_report,
-    confusion_matrix
+    f1_score
 )
-
-import matplotlib.pyplot as plt
 
 from dataset import test_loader
 from model import create_model
@@ -22,9 +16,9 @@ from model import create_model
 # Configuration
 # ==========================================
 
-MODEL_PATH = "models/cattle_breed_model.pth"
-
-RESULTS_DIR = "results"
+MODEL_PATH = (
+    "models/efficientnet_b0_cattle_breed_model.pth"
+)
 
 
 # ==========================================
@@ -32,357 +26,287 @@ RESULTS_DIR = "results"
 # ==========================================
 
 device = torch.device(
-    "cuda" if torch.cuda.is_available() else "cpu"
-)
-
-print("=" * 70)
-print("CATTLE & BUFFALO BREED MODEL TESTING")
-print("=" * 70)
-
-print(f"\nDevice: {device}")
-
-
-# ==========================================
-# Load checkpoint
-# ==========================================
-
-if not os.path.exists(MODEL_PATH):
-
-    print(f"\nERROR: Model not found:")
-    print(MODEL_PATH)
-    print("\nTrain the model first.")
-    exit()
-
-
-checkpoint = torch.load(
-    MODEL_PATH,
-    map_location=device
+    "cuda" if torch.cuda.is_available()
+    else "cpu"
 )
 
 
 # ==========================================
-# Get model information
+# Main
 # ==========================================
 
-num_classes = checkpoint["num_classes"]
+if __name__ == "__main__":
 
-class_names = checkpoint["class_names"]
+    print("=" * 70)
+    print("CATTLE & BUFFALO BREED CLASSIFICATION")
+    print("EFFICIENTNET-B0 - TEST")
+    print("=" * 70)
 
-best_val_accuracy = checkpoint[
-    "best_val_accuracy"
-]
+    print(f"\nDevice: {device}")
 
+    if torch.cuda.is_available():
 
-print(f"Number of classes : {num_classes}")
-
-print(
-    f"Best validation accuracy : "
-    f"{best_val_accuracy:.2f}%"
-)
-
-
-# ==========================================
-# Create model
-# ==========================================
-
-model = create_model(
-    num_classes=num_classes
-)
-
-model.load_state_dict(
-    checkpoint["model_state_dict"]
-)
-
-model = model.to(device)
-
-model.eval()
-
-
-# ==========================================
-# Testing
-# ==========================================
-
-all_labels = []
-all_predictions = []
-
-top5_correct = 0
-total_samples = 0
-
-
-with torch.no_grad():
-
-    for images, labels in test_loader:
-
-        images = images.to(device)
-        labels = labels.to(device)
-
-
-        # Forward pass
-        outputs = model(images)
-
-
-        # Top-1 prediction
-        _, predictions = torch.max(
-            outputs,
-            1
+        print(
+            f"GPU: "
+            f"{torch.cuda.get_device_name(0)}"
         )
 
 
-        # Store results
-        all_labels.extend(
-            labels.cpu().numpy()
-        )
+    # ======================================
+    # Load checkpoint
+    # ======================================
 
-        all_predictions.extend(
-            predictions.cpu().numpy()
-        )
+    print("\nLoading model...")
 
-
-        # ----------------------------------
-        # Top-5 accuracy
-        # ----------------------------------
-
-        top5_predictions = torch.topk(
-            outputs,
-            k=5,
-            dim=1
-        ).indices
-
-
-        for i in range(labels.size(0)):
-
-            if labels[i] in top5_predictions[i]:
-
-                top5_correct += 1
-
-
-        total_samples += labels.size(0)
-
-
-# ==========================================
-# Convert to NumPy
-# ==========================================
-
-all_labels = np.array(all_labels)
-
-all_predictions = np.array(
-    all_predictions
-)
-
-
-# ==========================================
-# Calculate metrics
-# ==========================================
-
-accuracy = accuracy_score(
-    all_labels,
-    all_predictions
-)
-
-precision = precision_score(
-    all_labels,
-    all_predictions,
-    average="weighted",
-    zero_division=0
-)
-
-recall = recall_score(
-    all_labels,
-    all_predictions,
-    average="weighted",
-    zero_division=0
-)
-
-f1 = f1_score(
-    all_labels,
-    all_predictions,
-    average="weighted",
-    zero_division=0
-)
-
-top5_accuracy = (
-    top5_correct / total_samples
-)
-
-
-# ==========================================
-# Print results
-# ==========================================
-
-print("\n" + "=" * 70)
-print("FINAL TEST RESULTS")
-print("=" * 70)
-
-print(
-    f"\nTest Accuracy     : {accuracy * 100:.2f}%"
-)
-
-print(
-    f"Top-5 Accuracy    : {top5_accuracy * 100:.2f}%"
-)
-
-print(
-    f"Precision         : {precision:.4f}"
-)
-
-print(
-    f"Recall            : {recall:.4f}"
-)
-
-print(
-    f"F1 Score          : {f1:.4f}"
-)
-
-
-# ==========================================
-# Classification report
-# ==========================================
-
-print("\n" + "=" * 70)
-print("CLASSIFICATION REPORT")
-print("=" * 70)
-
-report = classification_report(
-    all_labels,
-    all_predictions,
-    labels=list(range(num_classes)),
-    target_names=class_names,
-    zero_division=0
-)
-
-print(report)
-
-
-# ==========================================
-# Save classification report
-# ==========================================
-
-os.makedirs(
-    RESULTS_DIR,
-    exist_ok=True
-)
-
-with open(
-    os.path.join(
-        RESULTS_DIR,
-        "classification_report.txt"
-    ),
-    "w"
-) as file:
-
-    file.write(
-        f"Test Accuracy: {accuracy * 100:.2f}%\n"
+    checkpoint = torch.load(
+        MODEL_PATH,
+        map_location=device
     )
 
-    file.write(
-        f"Top-5 Accuracy: "
-        f"{top5_accuracy * 100:.2f}%\n"
+
+    num_classes = checkpoint[
+        "num_classes"
+    ]
+
+    class_names = checkpoint[
+        "class_names"
+    ]
+
+
+    print(
+        f"Number of classes: "
+        f"{num_classes}"
     )
 
-    file.write(
-        f"Precision: {precision:.4f}\n"
+
+    # ======================================
+    # Create model
+    # ======================================
+
+    model = create_model(
+        num_classes=num_classes
     )
 
-    file.write(
-        f"Recall: {recall:.4f}\n"
+    model = model.to(device)
+
+
+    # ======================================
+    # Load trained weights
+    # ======================================
+
+    model.load_state_dict(
+        checkpoint["model_state_dict"]
     )
 
-    file.write(
-        f"F1 Score: {f1:.4f}\n\n"
+    model.eval()
+
+
+    print("\nModel loaded successfully.")
+
+
+    # ======================================
+    # Loss function
+    # ======================================
+
+    criterion = nn.CrossEntropyLoss()
+
+
+    # ======================================
+    # Testing
+    # ======================================
+
+    test_loss = 0.0
+
+    correct = 0
+    total = 0
+
+    all_labels = []
+    all_predictions = []
+
+    top5_correct = 0
+
+
+    print("\nRunning test...\n")
+
+
+    with torch.no_grad():
+
+        for images, labels in test_loader:
+
+            images = images.to(device)
+            labels = labels.to(device)
+
+
+            # ------------------------------
+            # Forward pass
+            # ------------------------------
+
+            outputs = model(images)
+
+
+            # ------------------------------
+            # Loss
+            # ------------------------------
+
+            loss = criterion(
+                outputs,
+                labels
+            )
+
+            test_loss += (
+                loss.item()
+                * images.size(0)
+            )
+
+
+            # ------------------------------
+            # Top-1 prediction
+            # ------------------------------
+
+            _, predicted = torch.max(
+                outputs,
+                1
+            )
+
+
+            total += labels.size(0)
+
+            correct += (
+                predicted == labels
+            ).sum().item()
+
+
+            # ------------------------------
+            # Top-5 prediction
+            # ------------------------------
+
+            _, top5_predictions = torch.topk(
+                outputs,
+                k=5,
+                dim=1
+            )
+
+
+            for i in range(labels.size(0)):
+
+                if labels[i] in top5_predictions[i]:
+
+                    top5_correct += 1
+
+
+            # ------------------------------
+            # Store predictions
+            # ------------------------------
+
+            all_labels.extend(
+                labels.cpu().numpy()
+            )
+
+            all_predictions.extend(
+                predicted.cpu().numpy()
+            )
+
+
+    # ======================================
+    # Calculate metrics
+    # ======================================
+
+    test_loss = test_loss / total
+
+    test_accuracy = (
+        correct / total
+    ) * 100
+
+    top5_accuracy = (
+        top5_correct / total
+    ) * 100
+
+
+    precision = precision_score(
+        all_labels,
+        all_predictions,
+        average="weighted",
+        zero_division=0
     )
 
-    file.write(report)
+    recall = recall_score(
+        all_labels,
+        all_predictions,
+        average="weighted",
+        zero_division=0
+    )
+
+    f1 = f1_score(
+        all_labels,
+        all_predictions,
+        average="weighted",
+        zero_division=0
+    )
 
 
-# ==========================================
-# Confusion matrix
-# ==========================================
+    # ======================================
+    # Print overall results
+    # ======================================
 
-cm = confusion_matrix(
-    all_labels,
-    all_predictions,
-    labels=list(range(num_classes))
-)
+    print("=" * 70)
+    print("TEST RESULTS")
+    print("=" * 70)
 
+    print(
+        f"\nTest Loss      : "
+        f"{test_loss:.4f}"
+    )
 
-# ==========================================
-# Plot confusion matrix
-# ==========================================
+    print(
+        f"Test Accuracy  : "
+        f"{test_accuracy:.2f}%"
+    )
 
-plt.figure(
-    figsize=(24, 20)
-)
+    print(
+        f"Top-5 Accuracy : "
+        f"{top5_accuracy:.2f}%"
+    )
 
-plt.imshow(
-    cm,
-    interpolation="nearest"
-)
+    print(
+        f"Precision      : "
+        f"{precision:.4f}"
+    )
 
-plt.title(
-    "Cattle & Buffalo Breed Confusion Matrix"
-)
+    print(
+        f"Recall         : "
+        f"{recall:.4f}"
+    )
 
-plt.colorbar()
-
-plt.xlabel(
-    "Predicted Breed"
-)
-
-plt.ylabel(
-    "Actual Breed"
-)
-
-plt.xticks(
-    range(num_classes),
-    class_names,
-    rotation=90,
-    fontsize=6
-)
-
-plt.yticks(
-    range(num_classes),
-    class_names,
-    fontsize=6
-)
-
-plt.tight_layout()
+    print(
+        f"F1 Score       : "
+        f"{f1:.4f}"
+    )
 
 
-plt.savefig(
-    os.path.join(
-        RESULTS_DIR,
-        "confusion_matrix.png"
-    ),
-    dpi=200
-)
+    # ======================================
+    # Classification Report
+    # ======================================
 
-plt.close()
+    print("\n")
+    print("=" * 70)
+    print("CLASSIFICATION REPORT")
+    print("=" * 70)
+
+    report = classification_report(
+        all_labels,
+        all_predictions,
+        labels=list(range(num_classes)),
+        target_names=class_names,
+        zero_division=0
+    )
+
+    print(report)
 
 
-# ==========================================
-# Final
-# ==========================================
+    # ======================================
+    # Final
+    # ======================================
 
-print("\n" + "=" * 70)
-
-print("TESTING COMPLETE")
-
-print("=" * 70)
-
-print(
-    "\nClassification report saved to:"
-)
-
-print(
-    "results/classification_report.txt"
-)
-
-print(
-    "\nConfusion matrix saved to:"
-)
-
-print(
-    "results/confusion_matrix.png"
-)
-
-print("\n" + "=" * 70)
+    print("=" * 70)
+    print("TESTING COMPLETE")
+    print("=" * 70)
