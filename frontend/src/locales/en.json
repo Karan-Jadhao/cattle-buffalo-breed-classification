@@ -1,0 +1,108 @@
+{
+  "common": {
+    "home": "Home",
+    "about": "About",
+    "breeds": "Breeds",
+    "howItWorks": "How It Works",
+    "contact": "Contact",
+    "login": "Login",
+    "getStarted": "Get Started",
+    "email": "Email Address",
+    "password": "Password",
+    "submit": "Submit",
+    "close": "Close"
+  },
+  "hero": {
+    "title": "AI-Powered Breed Classification",
+    "subtitle": "of Cattle & Buffaloes",
+    "description": "Upload an image of cattle or buffalo and let our advanced AI model identify the breed instantly with high accuracy.",
+    "uploadBtn": "Upload Image",
+    "exploreBtn": "Explore Breeds",
+    "selected": "Image selected",
+    "ready": "Ready for breed analysis",
+    "analyzeBtn": "Analyze Breed",
+    "errorType": "Please upload JPG, JPEG or PNG.",
+    "errorSize": "Maximum image size is 10MB."
+  },
+  "about": {
+    "label": "ABOUT BREEDVISION",
+    "title": "Empowering Livestock Recognition with AI",
+    "p1": "BreedVision is an AI-powered platform that helps you identify cattle and buffalo breeds instantly from an image. Our advanced model is trained on thousands of images to deliver accurate predictions along with detailed information about each breed.",
+    "p2": "Whether you are a farmer, researcher, student, or livestock enthusiast, BreedVision makes breed identification simple, fast and accessible."
+  },
+  "stats": {
+    "cattleTitle": "Cattle Breeds",
+    "buffaloTitle": "Buffalo Breeds",
+    "supported": "Supported",
+    "accuracy": "Accuracy",
+    "prediction": "of Prediction",
+    "images": "Images",
+    "trained": "Trained",
+    "secure": "Secure & Private",
+    "predictions": "Predictions"
+  },
+  "howItWorks": {
+    "label": "HOW IT WORKS",
+    "title": "Simple Steps, Accurate Results",
+    "step1Title": "1. Upload Image",
+    "step1Desc": "Upload clear image of cattle or buffalo",
+    "step2Title": "2. AI Analysis",
+    "step2Desc": "Our AI model analyzes the features",
+    "step3Title": "3. Breed Prediction",
+    "step3Desc": "Best matching breed is predicted",
+    "step4Title": "4. View Details",
+    "step4Desc": "Get detailed information about the breed"
+  },
+  "predictionCard": {
+    "label": "Predicted Breed",
+    "confidence": "Confidence",
+    "species": "Species",
+    "origin": "Origin",
+    "purpose": "Purpose",
+    "characteristics": "Characteristics",
+    "girCow": "Gir Cow",
+    "cattle": "Cattle",
+    "indiaGujarat": "India (Gujarat)",
+    "milk": "Milk",
+    "girCharacteristics": "Long ears, convex forehead, reddish coat, good milk yield",
+    "viewDetails": "View Full Details"
+  },
+  "supportedImages": {
+    "title": "Supported Images",
+    "specs": "JPG, JPEG, PNG (Max 10MB)",
+    "item1Title": "Clear Image",
+    "item1Desc": "Better results with clear images",
+    "item2Title": "Single Animal",
+    "item2Desc": "Best results with single animal in the frame",
+    "item3Title": "Good Lighting",
+    "item3Desc": "Natural lighting gives better accuracy",
+    "item4Title": "Side or Front View",
+    "item4Desc": "Side or front facing angle works best"
+  },
+  "login": {
+    "title": "Login to BreedVision",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password",
+    "rememberMe": "Remember Me",
+    "forgotPassword": "Forgot Password?",
+    "dontHaveAccount": "Don't have an account?",
+    "signUp": "Sign Up"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "emailPlaceholder": "Enter your email",
+    "subject": "Subject",
+    "subjectPlaceholder": "Enter subject",
+    "message": "Message",
+    "messagePlaceholder": "Enter your message",
+    "sendBtn": "Send Message"
+  },
+  "footer": {
+    "tagline": "AI-Powered Breed Identification for Cattle & Buffaloes.",
+    "quickLinks": "Quick Links",
+    "connect": "Connect With Us",
+    "rights": "All rights reserved."
+  }
+}
