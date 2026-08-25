@@ -16,7 +16,7 @@ function Footer({ onOpenContact }) {
               <Beef size={22} />
             </span>
             <span className="footer-brand-name">
-              Breed<span>Vision</span>
+              Pashu<span>Drishti</span>
             </span>
           </a>
           <p className="footer-tagline">{t("footer.tagline")}</p>

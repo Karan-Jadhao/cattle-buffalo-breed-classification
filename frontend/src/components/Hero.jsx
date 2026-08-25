@@ -14,7 +14,7 @@ function Hero() {
         <div className="hero-left">
           <div className="ai-badge">
             <Sparkles size={14} className="badge-icon" />
-            <span>AI-POWERED LIVESTOCK INTELLIGENCE</span>
+            <span>AI-POWERED BREED PREDICTION</span>
           </div>
 
           <h1 className="hero-headline">

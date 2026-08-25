@@ -46,7 +46,7 @@ const About = () => {
             className="about-image"
           />
           <div className="about-image-badge">
-            <strong>BreedVision AI</strong>
+            <strong>PashuDrishti AI</strong>
             <span>Agricultural Intelligence</span>
           </div>
         </div>

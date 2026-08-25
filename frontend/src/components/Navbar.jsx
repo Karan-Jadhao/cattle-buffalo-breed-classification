@@ -33,7 +33,7 @@ function Navbar({ onOpenLogin, onOpenContact }) {
             <Beef size={20} aria-hidden="true" />
           </span>
           <span className="brand-name">
-            Breed<span>Vision</span>
+            Pashu<span>Drishti</span>
           </span>
         </a>
 
